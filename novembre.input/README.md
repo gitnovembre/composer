@@ -1,4 +1,4 @@
-# composer-input
+# Composer novembre-input
 Build HTML inputs.
 
 Example php Input generation
