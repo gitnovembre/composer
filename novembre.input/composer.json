@@ -1,0 +1,22 @@
+{
+    "name": "novembre/input",
+    "description": "Build HTML inputs for Wordpress ExPress Theme.",
+    "keywords": ["Novembre Communication", "ExPress", "Input"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Novembre Communication",
+            "email": "contact@novembre.com",
+            "homepage": "http://www.novembre.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Novembre\\Input\\": "src/class/"
+        }
+    }
+}

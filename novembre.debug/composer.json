@@ -1,0 +1,22 @@
+{
+    "name": "novembre/debug",
+    "description": "Debug toolbar for Wordpress by Novembre",
+    "keywords": ["Novembre Communication", "Wordpress", "debug", "monitoring"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Novembre Communication",
+            "email": "contact@novembre.com",
+            "homepage": "http://www.novembre.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Novembre\\Debug\\": "src/class/"
+        }
+    }
+}

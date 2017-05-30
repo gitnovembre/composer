@@ -1,0 +1,38 @@
+body.novembre-debug {
+    padding-bottom:50px;
+}
+#novembre-debug {
+    padding:5px 15px;
+    background:#252525; border-top:1px solid #404040; color:white; display:block;
+    width:100%; height:50px; min-height:50px;
+    position:fixed; bottom:0;
+
+    .highlight {
+        color:orange;
+    }
+
+    .module {
+        width:auto;
+        display:inline-block;
+        margin:auto 5px;
+
+        .module-action--open {
+            line-height:40px;
+            display:inline;
+            color:white !important;
+        }
+        .module-console {
+            display:none;
+            line-height:26px;
+            padding:10px;
+            position:absolute; top:51px; left:1%; width:98%; height:209px;
+            background:white; color:#252525;
+            overflow:auto;
+
+            h1 { font-size:18px; font-weight:700; }
+            h2 { font-size:16px; font-weight:700; }
+            h3 { font-size:14px; font-weight:700; margin:3px 0; }
+            p, span { font-size:12px;  }
+        }
+    }
+}
