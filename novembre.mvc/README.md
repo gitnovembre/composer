@@ -45,7 +45,7 @@ class Post extends Model {
     public function getPosts() {
 
         $the_query = new WP_Query( array(
-            "post_type" => $this->name
+            "post_type" => "post"
         ) );
 
         if ( $the_query->have_posts() ) {
