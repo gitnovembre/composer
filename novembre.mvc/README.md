@@ -6,8 +6,7 @@ Insérer ces lignes dans le fichier functions.php, veuillez à bien instancier l
 ```
 <?php
 
-use Novembre\Mvc\Mvc;
-new Mvc();
+new Novembre\Mvc\Mvc();
 
 ?>
 ```
