@@ -1,0 +1,22 @@
+{
+    "name": "novembre/composer",
+    "description": "Theme Novembre",
+    "type": "project",
+    "require": {
+        "novembre/debug": "novembre.debug",
+        "novembre/input": "novembre.input",
+        "novembre/mvc": "novembre.mvc"
+    },
+    "authors": [
+        {
+            "name": "Novembre Communication",
+            "email": "contact@novembre.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload" : {
+        "psr-4" : {
+            "Express\\App\\": "app/"
+        }
+    }
+}
