@@ -1,0 +1,55 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "f7d99fe72f8db2c2d0fc1c8cc59ea5c7",
+    "packages": [
+        {
+            "name": "beberlei/composer-monorepo-plugin",
+            "version": "v0.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/beberlei/composer-monorepo-plugin.git",
+                "reference": "0065e815b071a52cfed668490d610b9ba989c0c9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/beberlei/composer-monorepo-plugin/zipball/0065e815b071a52cfed668490d610b9ba989c0c9",
+                "reference": "0065e815b071a52cfed668490d610b9ba989c0c9",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0"
+            },
+            "require-dev": {
+                "composer/composer": "^1.1",
+                "phake/phake": "^2.2",
+                "phpunit/phpunit": "5.1.*"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Monorepo\\Composer\\Plugin"
+            },
+            "autoload": {
+                "psr-0": {
+                    "Monorepo\\": "src/main"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "time": "2016-05-28T10:54:12+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

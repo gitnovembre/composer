@@ -1,0 +1,5 @@
+{
+    "autoload": {
+        "psr-4": {"Novembre\\Mvc\\": "src/class/"}
+    }
+}
