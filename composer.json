@@ -6,5 +6,10 @@
         {
             "novembre.mvc" : "dev-master"
         }
+    ],
+    "deps": [
+        "novembre.debug",
+        "novembre.input",
+        "novembre.mvc"
     ]
 }
