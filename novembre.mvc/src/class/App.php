@@ -1,4 +1,4 @@
-<?php  namespace Novembre\Mvc;
+<?php namespace Novembre\Mvc;
 
 class App {
 
@@ -11,34 +11,25 @@ class App {
     public function __construct($options=array()) {
 
         $this->config = $options;
-
-        $this->setSlug();
     }
 
-    private function setSlug() {
+    public function setController($name) {
 
-        global $post;
-        $this->slug = $post->post_name;
-    }
+        global $app;
 
-    public function getSlug() {
-
-        return $this->slug;
-    }
-
-    public function setController($name = "index") {
-
-        if($this->slug !== "" && $name !== "") {
-
-            $ctrl = ucFirst($name);
-            $this->controller = new $ctrl();
-            return $this->controller;
-        }
+        $ctrl = $app->config['namespace']. "\\Controllers\\" . ucFirst($name);
+        $this->controller = new $ctrl();
+        return $this->controller;
     }
 
     public function setModel($modelName) {
 
+        global $app;
+
+        $modelName = $app->config['namespace']. "\\Models\\" . ucFirst($modelName);
+
         $model = ucFirst($modelName);
         $this->model = new $model();
     }
+
 }
