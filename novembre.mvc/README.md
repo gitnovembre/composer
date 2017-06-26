@@ -4,14 +4,14 @@
 
 Configurer l'autoloader composer avec l'espace de nom de votre choix. L'arborescence des dossiers controllers et models doit cependant rester fixe.
 
-`
+```
 "autoload" : {
     "psr-4" : {
         "App\\Controllers\\": "app/controllers/",
         "App\\Models\\": "app/models/"
     }
 }
-`
+```
 
 Insérer ces lignes dans le fichier functions.php, veuillez à bien instancier l'autoload de Composer en amont.
 Veuillez indiquer l'espace de nom associé à votre architecture.
