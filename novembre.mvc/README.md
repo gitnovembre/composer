@@ -3,10 +3,13 @@
 > composer require novembre/mvc
 
 Insérer ces lignes dans le fichier functions.php, veuillez à bien instancier l'autoload de Composer en amont.
+Veuillez indiquer l'espace de nom associé à votre architecture.
 ```
 <?php
 
-new Novembre\Mvc\Mvc();
+new Novembre\Mvc\Mvc(array(
+    "namespace" => "App"
+));
 
 ?>
 ```
@@ -15,7 +18,8 @@ C'est maintenant possible d'utiliser les nouvelles fonctionnalités.
 
 Nous allons tout d'abord créer une classe héritée de App qui nous servira de controller.
 ``` 
-<?php
+<?php namespace App\Controllers; //namespace configured
+
 use Novembre\Mvc\App;
 
 class Home extends App {
@@ -36,8 +40,10 @@ class Home extends App {
 
 Nous allons égalemement créer une classe héritée de Model qui nous servira de model de données.
 ```
-<?php
+<?php namespace App\Models; //namespace configured
+
 use Novembre\Mvc\Model;
+use WP_Query; // include WP_Query from WP
 
 class Post extends Model {
 
@@ -57,7 +63,7 @@ class Post extends Model {
                     "ID" => get_the_ID(),
                     "title" => get_the_title(),
                     "subtitle" => get_field('subtitle'),
-                    "gallery" => $this->getGallery('gallery', get_the_ID())
+                    "gallery" => $this->getAcfGallery('gallery', get_the_ID())
                 );
             }
 
@@ -73,41 +79,18 @@ Nous pouvons maintenant nous servir de ces classes dans nos fichiers de vues, ic
 ```
 <?php
     $home = $app->setController('home');
-?>
-<?php ob_start(); ?>
+    $posts = $home->model->getPosts(); ?>
 
-	<section role="main">
-        <div class="container">
+    <?php foreach($posts as $post) : ?>
+        <h2><?php echo $post["title"]; ?></h2>
 
-            <div class="columns">
-                <div class="column">
-    				<h1>Bienvenue sur ExPress</h1>
-                </div>
-            </div>
+        <?php foreach($post["gallery"] as $img): ?>
 
-            <div class="columns">
-                <?php $posts = $home->model->getPosts(); ?>
+            <img src="<?php echo $img['sizes']['thumbnail']; ?>" />
 
-                <?php foreach($posts as $post) : ?>
-                    <div class="column">
-                        <h2><?php echo $post["title"]; ?></h2>
-                    </div>
+        <?php endforeach; ?>
+    <?php endforeach; ?>
 
-                    <?php foreach($post["gallery"] as $img): ?>
-
-                        <div class="column">
-                            <img src="<?php echo $img['sizes']['thumbnail']; ?>" />
-                        </div>
-
-                    <?php endforeach; ?>
-                <?php endforeach; ?>
-            </div>
-
-        </div>
-	</section>
-
-<?php $view = ob_get_contents(); ob_end_clean(); ?>
-<?php get_template_part(PATH_VIEWS_LAYOUTS . '/layout', 'default'); ?>
 ```
 
 `$app` fait référence à notre objet principal et nous pouvons appeler nos méthodes grâce à la méthode `setController('home')`
@@ -122,6 +105,4 @@ Pour appeler une méthode de la classe `Post`, il nous suffit d'écrire
 <?php $posts = $home->model->getPosts(); //retourne un tableau de données voulues ?>
 ```
 
-La class `Model` fournie avec le package comporte des méthodes globales qu'on peut appeler depuis notre propre classe de model. L'exemple ci-dessus utilise la méthode globale getGallery() (basée sur le plugin ACF) de la class `Model`.
-
-Projet récent, des ajustements et/ou améliorations sont à venir.
+La class `Model` fournie avec le package comporte des méthodes globales qu'on peut appeler depuis notre propre classe de model. L'exemple ci-dessus utilise la méthode globale getAcfGallery() (basée sur le plugin ACF) de la class `Model`.
