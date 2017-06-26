@@ -2,7 +2,7 @@
 *MVC in WP*
 > composer require novembre/mvc
 
-Configurer l'autoloader composer avec l'espace de nom de votre choix. L'arborescence des dossiers controllers et models doit cependant rester fixe.
+Configurer l'autoloader composer avec l'espace de nom de votre choix. L'arborescence des dossiers controllers et models peuvent changer à condition de garder l'arborescence du namespace ("MyApp\\Controllers\\": "app/monDossier/" par exemple)
 
 ```
 "autoload" : {
