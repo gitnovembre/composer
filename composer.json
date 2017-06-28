@@ -13,6 +13,13 @@
     ],
     "require": {
         "php": ">=5.4",
-        "beberlei/composer-monorepo-plugin": "^0.12.0"
-    }
+        "beberlei/composer-monorepo-plugin": "^0.12.0",
+        "novembre/composer": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:gitnovembre/composer.git"
+        }
+    ]
 }
