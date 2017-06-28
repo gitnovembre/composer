@@ -16,7 +16,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Novembre\\Mvc\\": "novembre.mvc/src/class/"
+            "Novembre\\Input\\": "novembre.input/src/class/",
+            "Novembre\\Mvc\\": "novembre.mvc/src/class/",
         }
     }
 }
