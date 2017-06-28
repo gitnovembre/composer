@@ -1,5 +1,5 @@
 {
-    "name": "novembre/composer",
+    "name": "novembre/monorepo",
     "description": "Composer Monorepo",
     "keywords": ["Novembre Communication", "ExPress", "Monorepo"],
     "license": "MIT",
@@ -12,7 +12,11 @@
         }
     ],
     "require": {
-        "php": ">=5.4",
-        "beberlei/composer-monorepo-plugin": "^0.12.0"
+        "php": ">=5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Novembre\\Mvc\\": "novembre.mvc/src/class/"
+        }
     }
 }
