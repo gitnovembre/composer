@@ -1,6 +1,6 @@
 <?php  namespace Novembre;
 
-static class Express {
+class Express {
 
     public static function img($pathFromTheme="") {
 
