@@ -1,4 +1,4 @@
-# Composer novembre/functions
+# Composer novembre/express
 *Useful static functions in WP*
 
 La classe est statique et peut-être utilisée partout, sans déclaration au préalable de deux manières:
