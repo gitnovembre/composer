@@ -74,11 +74,16 @@ class Mail {
 		$this->headers = array_merge($this->headers, array("From: ".$this->options['from_name']." <".$this->options['from'].">" . "\r\n"));
 	}
 
+	private function enable_html_mail()
+	{
+	    return "text/html";
+	}
+
 	public function send($user_email)
 	{
 		global $mail_content;
 
-		add_filter ("wp_mail_content_type", "enable_html_mail");
+		add_filter ("wp_mail_content_type", array($this, "enable_html_mail"));
 		if(!$this->options['mjml']) :
 			ob_start();
 				foreach($this->assign as $k => $v)
@@ -109,7 +114,7 @@ class Mail {
 
 		wp_mail( $user_email, $this->options['subject'], $message, $this->headers );
 
-		remove_filter( "wp_mail_content_type", "enable_html_mail" );
+		remove_filter( "wp_mail_content_type", array($this, "enable_html_mail") );
 	}
 
 	public function __destruct()
