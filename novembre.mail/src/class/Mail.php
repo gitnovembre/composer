@@ -74,7 +74,7 @@ class Mail {
 		$this->headers = array_merge($this->headers, array("From: ".$this->options['from_name']." <".$this->options['from'].">" . "\r\n"));
 	}
 
-	private function enable_html_mail()
+	public function enable_html_mail()
 	{
 	    return "text/html";
 	}
