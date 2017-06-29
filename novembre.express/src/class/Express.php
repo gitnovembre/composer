@@ -2,8 +2,8 @@
 
 class Express {
 
-    private $path_img = "/dist/assets/img/";
-    
+    private static $path_img = "/dist/assets/img/";
+
 
     public static function get_img($pathFromTheme='')
     {
