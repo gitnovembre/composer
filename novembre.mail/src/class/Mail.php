@@ -11,7 +11,7 @@ class Mail {
 		layout => "mail",
 		from => "",
 		from_name => "",
-		mjml => true
+		mjml => false
 	);
 	private $headers = array();
 	private $assign = array();
