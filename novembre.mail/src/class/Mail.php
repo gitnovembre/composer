@@ -112,9 +112,11 @@ class Mail {
 
 		$this->buildHeaders();
 
-		wp_mail( $user_email, $this->options['subject'], $message, $this->headers );
+		$sended = wp_mail( $user_email, $this->options['subject'], $message, $this->headers );
 
 		remove_filter( "wp_mail_content_type", array($this, "enable_html_mail") );
+
+		return $sended;
 	}
 
 	public function __destruct()
