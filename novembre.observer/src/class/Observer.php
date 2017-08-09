@@ -1,34 +1,39 @@
-<?php  namespace Novembre\Observer;
-
-use Novembre\Observer\App;
+<?php namespace Novembre\Observer;
 
 class Observer {
 
-    private $options = array();
+    private static $_instance;
+    private $listeners = [];
 
-    public function __construct($options=array())
+    public static function getInstance(): Observer
     {
+        if(!self::$_instance)
+            self::$_instance = new self();
 
-        $this->options = array();
-        $this->options = array_replace_recursive($this->options, $options);
-
-        add_action( 'template_redirect', array(&$this, 'template_redirect'));
+        return self::$_instance;
     }
 
-    private function setOptions($options)
+    public function emit(string $event, ...$args)
     {
-        $this->options = array_replace_recursive($this->options, $options);
+        if($this->hasListener($event))
+        {
+            foreach($this->listeners[$event] as $listener)
+            {
+                call_user_func_array($listener, $args);
+            }
+        }
     }
 
-    public function getOption($k="")
+    public function on(string $event, callable $callable)
     {
-        return ($k !== "") ? $this->options[$k] : $this->options;
+        if(!$this->hasListener($event))
+            $this->listeners[$event] = [];
+
+        $this->listeners[$event][] = $callable;
     }
 
-    public function template_redirect() {
-
-        global $app;
-
-        $app = new App($this->options);
+    private function hasListener(string $event): bool
+    {
+        return array_key_exists($event, $this->listeners);
     }
 }
