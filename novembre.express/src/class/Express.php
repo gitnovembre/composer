@@ -4,6 +4,21 @@ class Express {
 
     private static $path_img = "/dist/assets/img/";
 
+    public static function debug($test, $die = false)
+    {
+    	ob_start();
+    	?>
+    	<pre class="alert alert-danger">
+    		<?php var_dump($test); ?>
+    	</pre>
+    	<?php $debug = ob_get_clean(); ?>
+
+    	<?php
+    	if($die)
+    		die($debug);
+    	else
+    		echo $debug;
+    }
 
     public static function get_img($pathFromTheme='')
     {
@@ -121,7 +136,7 @@ class Express {
             '\\1'
             );
         $buffer = preg_replace($search, $replace, $buffer);
-        
+
         return $buffer;
     }
 
