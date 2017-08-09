@@ -3,7 +3,7 @@
 class Observer {
 
     private static $_instance;
-    private $listeners[];
+    private $listeners = [];
 
     public static function getInstance(): Observer
     {
