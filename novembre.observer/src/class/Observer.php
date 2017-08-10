@@ -1,5 +1,7 @@
 <?php namespace Novembre\Observer;
 
+use Novembre\Listener;
+
 class Observer {
 
     private static $_instance;
@@ -19,21 +21,42 @@ class Observer {
         {
             foreach($this->listeners[$event] as $listener)
             {
-                call_user_func_array($listener, $args);
+                $listener->handle($args);
+
+                if($listener->stopPropagation)
+                    break;
             }
         }
     }
 
-    public function on(string $event, callable $callable)
+    public function on(string $event, callable $callable, int $priority = 0): Listener
     {
         if(!$this->hasListener($event))
             $this->listeners[$event] = [];
 
-        $this->listeners[$event][] = $callable;
+        $listener = new Listener($callable, $priority);
+
+        $this->listeners[$event][] = $listener;
+        $this->sortListeners($event);
+
+        return $listener;
+    }
+
+    public function once(string $event, callable $callable, int $priority = 0): Listener
+    {
+        return $this->on($event, $callable, $priority)->once();
     }
 
     private function hasListener(string $event): bool
     {
         return array_key_exists($event, $this->listeners);
+    }
+
+    private function sortListeners($event)
+    {
+        uasort($this->listeners[$event], function($a, $b)
+        {
+            return $a->priority < $b->priority;
+        });
     }
 }

@@ -22,5 +22,8 @@
             "Novembre\\Mvc\\": "novembre.mvc/src/class/",
             "Novembre\\Observer\\": "novembre.observer/src/class/"
         }
+    },
+    "require-dev": {
+        "kahlan/kahlan": "^3.1"
     }
 }
