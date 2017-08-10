@@ -1,6 +1,6 @@
 <?php namespace Novembre\Observer;
 
-use Novembre\Listener;
+use Novembre\Observer\Listener;
 
 class Observer {
 
