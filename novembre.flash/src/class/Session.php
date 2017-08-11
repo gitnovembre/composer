@@ -1,4 +1,4 @@
-<?php namespace Novembre\Flash\Session;
+<?php namespace Novembre\Flash;
 
 class Session implements SessionInterface, \ArrayAccess
 {
