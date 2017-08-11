@@ -6,14 +6,17 @@ class Flash implements SessionInterface, \ArrayAccess
 
     public function get($key)
     {
+        return $this->session[$key];
     }
 
     public function set($key, $value)
     {
+        $this->session[$key] = $value;
     }
 
     public function delete($key)
     {
+        unset($this->session[$key]);
     }
 
     public function offsetSet($offset, $value)
