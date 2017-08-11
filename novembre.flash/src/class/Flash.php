@@ -2,43 +2,47 @@
 
 class Flash implements SessionInterface, \ArrayAccess
 {
-    private $session = array();
+
+    public function __construct()
+    {
+        session_start();
+    }
 
     public function get($key)
     {
-        return $this->session[$key];
+        if($_SESSION[$key])
+            return $_SESSION[$key];
+        else
+            return null;
     }
 
     public function set($key, $value)
     {
-        $this->session[$key] = $value;
+        $_SESSION[$key] = $value;
     }
 
     public function delete($key)
     {
-        unset($this->session[$key]);
+        unset($_SESSION[$key]);
     }
 
     public function offsetSet($offset, $value)
     {
-        if (is_null($offset))
-            $this->session[] = $value;
-        else
-            $this->session[$offset] = $value;
+        return $this->set($offset, $value);
     }
 
     public function offsetExists($offset)
     {
-        return isset($this->session[$offset]);
+        return isset($_SESSION[$offset]);
     }
 
     public function offsetUnset($offset)
     {
-        unset($this->session[$offset]);
+        unset($_SESSION[$offset]);
     }
 
     public function offsetGet($offset)
     {
-        return isset($this->session[$offset]) ? $this->session[$offset] : null;
+        return $this->get($offset);
     }
 }
