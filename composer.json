@@ -17,6 +17,7 @@
     "autoload": {
         "psr-4": {
             "Novembre\\": "novembre.express/src/class/",
+            "Novembre\\Flash\\": "novembre.flash/src/class/",
             "Novembre\\Input\\": "novembre.input/src/class/",
             "Novembre\\Mail\\": "novembre.mail/src/class/",
             "Novembre\\Mvc\\": "novembre.mvc/src/class/",
