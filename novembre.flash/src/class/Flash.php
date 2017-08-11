@@ -6,7 +6,7 @@ class Flash {
 
     const KEY = "nFlash";
 
-    public function __construct(Session $session)
+    public function __construct(SessionInterface $session)
     {
         $this->session = $session;
     }
