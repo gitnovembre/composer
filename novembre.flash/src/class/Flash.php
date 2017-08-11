@@ -17,7 +17,7 @@ class Flash implements SessionInterface, \Countable {
 
     }
 
-    public function count($var, int $mode = COUNT_NORMAL) 
+    public function count() 
     {
         return 4;
     }
