@@ -1,48 +1,29 @@
 <?php namespace Novembre\Flash;
 
-class Flash implements SessionInterface, \ArrayAccess
-{
+class Flash {
 
-    public function __construct()
+    private $session;
+
+    const KEY = "nFlash";
+
+    public function __construct(Session $session)
     {
-        session_start();
+        $this->session = $session;
     }
 
-    public function get($key)
+    public function set($message, $type)
     {
-        if($_SESSION[$key])
-            return $_SESSION[$key];
-        else
-            return null;
+        $this->session->set(self::KEY, [
+            message => $message,
+            type => $type
+        ]);
     }
 
-    public function set($key, $value)
+    public function get()
     {
-        $_SESSION[$key] = $value;
-    }
+        $flash = $this->session->get(self::KEY);
+        $this->session->delete(self::KEY);
 
-    public function delete($key)
-    {
-        unset($_SESSION[$key]);
-    }
-
-    public function offsetSet($offset, $value)
-    {
-        return $this->set($offset, $value);
-    }
-
-    public function offsetExists($offset)
-    {
-        return isset($_SESSION[$offset]);
-    }
-
-    public function offsetUnset($offset)
-    {
-        unset($_SESSION[$offset]);
-    }
-
-    public function offsetGet($offset)
-    {
-        return $this->get($offset);
+        return $flash['message'];
     }
 }
