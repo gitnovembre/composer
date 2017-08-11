@@ -1,24 +1,17 @@
 <?php namespace Novembre\Flash;
 
-class Flash implements SessionInterface, \Countable {
+class Flash implements SessionInterface, \ArrayAccess
+{
 
-    public function get($key) 
+    public function get($key)
     {
-
     }
 
-    public function set($key, $value) 
+    public function set($key, $value)
     {
-
     }
 
-    public function delete($key) 
+    public function delete($key)
     {
-
-    }
-
-    public function count() 
-    {
-        return 4;
     }
 }

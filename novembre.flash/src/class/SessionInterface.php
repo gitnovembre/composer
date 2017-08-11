@@ -1,6 +1,7 @@
 <?php namespace Novembre\Flash;
 
-interface SessionInterface {
+interface SessionInterface
+{
 
     public function get($key);
 
