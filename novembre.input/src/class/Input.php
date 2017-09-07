@@ -6,11 +6,17 @@ class Input
 	public $id;
 	public $label_name;
 	public $label_slug;
+	public $template_path = __DIR__ . '/../views/';
 	public $template = "default";
 	public $input_value;
 	public $text_help;
 	public $addon;
 
+	public function template_path($template_path)
+	{
+		$this->template_path = $template_path;
+		return $this;
+	}
 	public function template($template)
 	{
 		$this->template = $template;
@@ -70,7 +76,7 @@ class Input
 		$this->id = $this->slugify($this->name);
 		ob_start();
             $input = $this;
-            require __DIR__.'/../views/' . strtolower($get_called_class).'-'.$this->template.'.php';
+            require $this->template_path . strtolower($get_called_class).'-'.$this->template.'.php';
 		$input = ob_get_contents(); ob_end_clean();
 
 		return $input;
