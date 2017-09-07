@@ -13,7 +13,7 @@ class Mvc {
         $this->options = array();
         $this->options = array_replace_recursive($this->options, $options);
 
-        add_action( 'template_redirect', array(&$this, 'template_redirect'));
+        add_action( 'init', array(&$this, 'template_redirect'));
     }
 
     private function setOptions($options)
