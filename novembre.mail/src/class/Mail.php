@@ -3,23 +3,23 @@
 class Mail {
 
 	private $options = array(
-        layout_path => "/templates/views/layouts",
-        template_path => "/templates/views/mails",
-        mjml_minified_path => "/dist/mail",
-		subject => "*|PAGE TITLE|*",
-		template => "example",
-		layout => "mail",
-		from => "",
-		from_name => "",
-		mjml => false
+        "layout_path" => "/templates/views/layouts",
+        "template_path" => "/templates/views/mails",
+        "mjml_minified_path" => "/dist/mail",
+		"subject" => "*|PAGE TITLE|*",
+		"template" => "example",
+		"layout" => "mail",
+		"from" => "",
+		"from_name" => "",
+		"mjml" => false
 	);
 	private $headers = array();
 	private $assign = array();
 
 	public function __construct()
 	{
-		$this->setFrom('no-reply@' . $_SERVER['SERVER_NAME']);
-		$this->setFromName(get_bloginfo( 'name' ));
+		$this->setFrom("no-reply@" . $_SERVER["SERVER_NAME"]);
+		$this->setFromName(get_bloginfo( "name" ));
 	}
 	/* -----------------------------
 		SETTERS
@@ -51,17 +51,17 @@ class Mail {
 
 	public function setFrom($email)
 	{
-		$this->options['from'] = $email;
+		$this->options["from"] = $email;
 	}
 
 	public function setFromName($name)
 	{
-		$this->options['from_name'] = $name;
+		$this->options["from_name"] = $name;
 	}
 
 	public function setMjml($state)
 	{
-		$this->options['mjml'] = $state;
+		$this->options["mjml"] = $state;
 	}
 
 	public function assign($v)
@@ -71,7 +71,7 @@ class Mail {
 
 	private function buildHeaders()
 	{
-		$this->headers = array_merge($this->headers, array("From: ".$this->options['from_name']." <".$this->options['from'].">" . "\r\n"));
+		$this->headers = array_merge($this->headers, array("From: ".$this->options["from_name"]." <".$this->options["from"].">" . "\r\n"));
 	}
 
 	public function enable_html_mail()
@@ -84,17 +84,17 @@ class Mail {
 		global $mail_content;
 
 		add_filter ("wp_mail_content_type", array($this, "enable_html_mail"));
-		if(!$this->options['mjml']) :
+		if(!$this->options["mjml"]) :
 			ob_start();
 				foreach($this->assign as $k => $v)
 					set_query_var( $k, $v );
 
-				get_template_part($this->options['template_path'] . '/mail', $this->options['template']);
+				get_template_part($this->options["template_path"] . '/mail', $this->options["template"]);
 
 			$mail_content = ob_get_contents(); ob_end_clean();
 
 			ob_start();
-				get_template_part($this->options['layout_path'] . '/layout', $this->options['layout']);
+				get_template_part($this->options["layout_path"] . '/layout', $this->options["layout"]);
 
 			$message = ob_get_contents(); ob_end_clean();
 
@@ -104,7 +104,7 @@ class Mail {
 			foreach($this->assign as $k => $v)
 				set_query_var( $k, $v );
 
-			get_template_part($this->options['mjml_minified_path'] . '/mail', $this->options['template']);
+			get_template_part($this->options["mjml_minified_path"] . '/mail', $this->options["template"]);
 
 			$message = ob_get_contents(); ob_end_clean();
 
@@ -112,7 +112,7 @@ class Mail {
 
 		$this->buildHeaders();
 
-		$sended = wp_mail( $user_email, $this->options['subject'], $message, $this->headers );
+		$sended = wp_mail( $user_email, $this->options["subject"], $message, $this->headers );
 
 		remove_filter( "wp_mail_content_type", array($this, "enable_html_mail") );
 
